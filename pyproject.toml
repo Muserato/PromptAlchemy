@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-prompt-alchemy"
+version = "1.0.0"
+description = "A modern prompt templating system for ComfyUI"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0",
+    "httpx>=0.24.0",
+]
+
+[project.optional-dependencies]
+watch = ["watchdog>=3.0"]
+dev = ["pytest>=7.0"]

@@ -1,0 +1,45 @@
+# Nested color palettes
+# Use __colors/warm__, __colors/cool__, or __colors__ for any color
+
+colors:
+  warm:
+    - deep crimson
+    - burnt amber
+    - copper gold
+    - terracotta
+    - ""
+
+  cool:
+    - sapphire blue
+    - slate grey
+    - ice blue
+    - midnight blue
+    - ""
+
+  neutral:
+    - ivory
+    - ash white
+    - charcoal
+    - soft taupe
+    - ""
+
+  jewel:
+    - emerald green
+    - ruby red
+    - amethyst purple
+    - deep jade
+    - ""
+
+  pastel:
+    - blush pink
+    - lavender
+    - mint green
+    - baby blue
+    - ""
+
+  natural:
+    - moss green
+    - bark brown
+    - autumn leaf
+    - clay red
+    - ""

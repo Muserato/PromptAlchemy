@@ -1,0 +1,20 @@
+# Outdoor environments
+
+outdoor:
+  wilderness:
+    - ancient forest with towering trees and dappled sunlight
+    - mist-covered mountain peak at dawn
+    - wildflower meadow stretching to the horizon
+    - rocky coastline with crashing waves
+
+  urban:
+    - rain-slicked city street at night with neon reflections
+    - rooftop overlooking a sprawling cityscape at sunset
+    - cobblestone alley with hanging lanterns
+    - bustling marketplace with colorful awnings
+
+  fantastical:
+    - floating islands connected by rope bridges
+    - crystal cave entrance glowing from within
+    - ancient ruins overgrown with luminescent vines
+    - enchanted grove with bioluminescent mushrooms

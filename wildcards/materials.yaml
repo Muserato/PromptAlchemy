@@ -1,0 +1,30 @@
+# Materials and textures
+
+materials:
+  textile:
+    - silk
+    - velvet
+    - brocade
+    - lace
+    - ""
+
+  metal:
+    - tempered steel
+    - dark iron
+    - hammered copper
+    - oxidised brass
+    - ""
+
+  stone:
+    - polished marble
+    - rough-hewn granite
+    - weathered sandstone
+    - obsidian
+    - ""
+
+  organic:
+    - tooled leather
+    - carved driftwood
+    - aged bone
+    - amber resin
+    - ""

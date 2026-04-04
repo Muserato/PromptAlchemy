@@ -1,0 +1,165 @@
+{
+  "id": "89598675-7ba0-437f-b006-7abe589369d3",
+  "revision": 0,
+  "last_node_id": 2,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "PAPromptTemplate",
+      "pos": [
+        200,
+        200
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "variables",
+          "shape": 7,
+          "type": "PA_VARIABLES",
+          "link": null
+        },
+        {
+          "name": "wildcard_index",
+          "shape": 7,
+          "type": "PA_WILDCARD_INDEX",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt_bundle",
+          "type": "PROMPT_BUNDLE",
+          "slot_index": 0,
+          "links": []
+        },
+        {
+          "name": "resolved_text",
+          "type": "STRING",
+          "slot_index": 1,
+          "links": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "slot_index": 2,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PAPromptTemplate",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "a {beautiful|stunning|majestic} __colors__ {cat|dog|fox} in __art_styles__ style, __lighting__",
+        42,
+        "random",
+        "random"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CLIPTextEncode",
+      "pos": [
+        700,
+        198.5291602239286
+      ],
+      "size": [
+        300,
+        100
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.17.0",
+        "Node name for S&R": "CLIPTextEncode",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "text": true
+          },
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "info": "Basic PromptAlchemy workflow: PA Prompt Template -> CLIP Text Encode.",
+    "workflowRendererVersion": "LG",
+    "ue_links": [],
+    "ds": {
+      "scale": 1.4957317073170733,
+      "offset": [
+        -100,
+        -98.52916022392861
+      ]
+    },
+    "frontendVersion": "1.41.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

@@ -1,0 +1,17 @@
+# Moods and atmosphere
+serene
+ominous
+triumphant
+melancholic
+whimsical
+mysterious
+ethereal
+intense
+peaceful
+foreboding
+joyful
+haunting
+nostalgic
+chaotic
+dreamlike
+majestic

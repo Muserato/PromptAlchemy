@@ -1,0 +1,30 @@
+# Lighting styles with weighted entries
+# Higher weight = more likely to be picked
+
+lighting:
+  dramatic:
+    - dramatic rim lighting
+    - 1.5::cinematic volumetric rays
+    - harsh chiaroscuro
+    - spotlight with deep shadows
+    - backlit silhouette
+
+  soft:
+    - soft diffused light
+    - overcast ambient glow
+    - 1.3::golden hour warmth
+    - gentle window light
+    - candlelight
+
+  studio:
+    - three-point studio lighting
+    - beauty dish key light
+    - ring light frontal
+    - high-key even lighting
+
+  natural:
+    - bright midday sun
+    - dappled forest light
+    - 1.3::golden hour backlight
+    - blue hour twilight
+    - moonlight

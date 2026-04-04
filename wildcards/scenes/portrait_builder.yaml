@@ -1,0 +1,62 @@
+# portrait_builder.yaml — Self-Contained Portrait Generator
+#
+# This file demonstrates RELATIVE wildcard references.
+# All __references__ without a path prefix resolve to sibling keys
+# within this same file, making it fully portable.
+# Move or rename this file — the internal references still work.
+#
+# It also showcases: inline weights, empty entries, {selections},
+# {$variable} refs, and cross-file absolute references.
+#
+# Usage:
+#   __scenes/portrait_builder__            → random from ALL entries
+#   __scenes/portrait_builder/templates__  → assembled portrait prompt
+#   __scenes/portrait_builder/quick__      → simpler one-shot entries
+
+portrait_builder:
+  # --- Internal building blocks (referenced relatively by templates) ---
+
+  skin_tones:
+    - warm olive skin
+    - pale porcelain skin
+    - deep brown skin
+    - sun-kissed golden skin
+    - ""
+
+  hair:
+    - flowing dark hair
+    - short silver hair
+    - 1.5::long auburn curls
+    - braided golden hair
+    - wind-swept black hair
+    - ""
+
+  clothing_style:
+    - elegant flowing robes
+    - practical leather armor
+    - ornate royal garments
+    - simple linen tunic
+    - {futuristic|enchanted|ancient} vestments
+
+  backdrop:
+    - against a __colors/warm__ sunset sky
+    - in a __environments/indoor/mysterious__ setting
+    - surrounded by __colors/cool__ mist
+    - with __lighting/dramatic__ behind them
+    - ""
+
+  # --- Assembled templates using relative references ---
+  # __skin_tones__ resolves to portrait_builder/skin_tones (relative)
+  # __colors/warm__ resolves to the root colors file (absolute)
+
+  templates:
+    - "__skin_tones__, __hair__, wearing __clothing_style__, __backdrop__, {$mood} expression, __compositions__, __quality_boosters__"
+    - "1.3::portrait of a figure with __skin_tones__, __hair__, __clothing_style__, __lighting/soft__, {serene|intense|thoughtful} gaze"
+    - "__hair__, __skin_tones__, __clothing_style__, __backdrop__, __art_styles__ style"
+
+  # --- Quick one-shot entries (no internal references) ---
+
+  quick:
+    - "a striking portrait, dramatic lighting, highly detailed face"
+    - "{mysterious|regal|fierce} figure in {warm|cool|neutral} tones, cinematic composition"
+    - "character portrait, __art_styles__ style, __quality_boosters__"

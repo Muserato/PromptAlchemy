@@ -1,0 +1,26 @@
+# Art styles and movements
+# Each line is one possible style. Blank lines are ignored.
+
+oil painting
+digital art
+watercolor
+cyberpunk
+art nouveau
+impressionist
+surrealist
+baroque
+minimalist
+art deco
+gothic
+renaissance
+pop art
+ukiyo-e
+photorealistic
+concept art
+steampunk
+low poly 3D
+ink wash painting
+pencil sketch
+vaporwave
+stained glass
+pixel art

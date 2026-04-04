@@ -1,0 +1,17 @@
+# Fantasy theme — cross-file assembly with variables and globs
+# Use with PA Variables node: set $mood, $style, etc.
+
+fantasy:
+  hero:
+    - "a {noble|legendary|unlikely} __characters/archetypes/warrior__, __colors/jewel__ armor, __lighting/dramatic__, __quality_boosters__"
+    - "a __characters/mythological/greek__ as a {$style} hero, __environments/outdoor/fantastical__, __compositions__"
+    - "1.3::a __characters/archetypes/mage__ in a __environments/indoor/mysterious__, __moods__ aura, __art_styles__ style"
+
+  landscape:
+    - "__environments/outdoor/wilderness__, __lighting/natural__, __moods__ atmosphere, __art_styles__ style, __quality_boosters__"
+    - "a __environments/outdoor/fantastical__, __colors/jewel__ sky, {epic|sweeping|intimate} composition"
+    - "__environments/outdoor/*__ with __lighting/*__, __quality_boosters__"
+
+  scene:
+    - "a __characters/archetypes/*__ in __environments/*__, __lighting__, __moods__, __compositions__, __art_styles__ style"
+    - "{$mood} scene: __characters/mythological__ confronting a {dragon|demon|ancient spirit} in __environments/outdoor/fantastical__"

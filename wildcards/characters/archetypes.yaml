@@ -1,0 +1,18 @@
+# Character archetypes that reference other wildcard files
+# Demonstrates cross-file references, selections, and variable refs in entries
+
+archetypes:
+  warrior:
+    - "a {battle-hardened|legendary|fearsome} warrior in __colors/warm__ armor, __moods__ expression"
+    - "an armored knight with __colors/jewel__ accents, wielding a {sword|axe|spear}"
+    - "{$mood} warrior standing in __lighting/dramatic__, __compositions__"
+
+  mage:
+    - "a {wise|mysterious|ancient} mage in __colors/cool__ robes, __lighting/soft__"
+    - "a sorcerer channeling __colors/jewel__ energy, {arcane symbols|glowing runes} surrounding them"
+    - "an alchemist in a {cluttered|ancient|candlelit} laboratory, __moods__ atmosphere"
+
+  explorer:
+    - "a {daring|seasoned|young} explorer in __lighting/natural__, __compositions__"
+    - "an adventurer with __colors/natural__ gear, {map|compass|lantern} in hand"
+    - "a traveler resting at {a campfire|a crossroads|an ancient ruin}, __moods__ sky"

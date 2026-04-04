@@ -1,0 +1,28 @@
+# Mythological characters with inline and object weight syntax
+
+mythological:
+  greek:
+    - Zeus, king of the gods
+    - Athena, goddess of wisdom
+    - 1.5::Hercules, legendary hero
+    - 0.5::Hephaestus, god of the forge
+    - Apollo, god of the sun
+    - Artemis, goddess of the hunt
+
+  norse:
+    - Thor, god of thunder
+    - Odin, the Allfather
+    - Freya, goddess of love
+    - Loki, the trickster
+    - value: Valkyrie, chooser of the slain
+      weight: 1.5
+    - value: Baldur, the beautiful
+      weight: 0.5
+
+  egyptian:
+    - Anubis, jackal-headed guardian
+    - Ra, the sun god
+    - Isis, goddess of magic
+    - Bastet, cat goddess
+    - value: Thoth, ibis-headed scribe
+      weight: 0.8

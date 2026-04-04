@@ -1,0 +1,20 @@
+# Weather conditions (deep nesting for glob demos)
+# Try: __environments/outdoor/weather/stormy__
+# Or:  __environments/**/weather__ to pool all weather entries
+
+weather:
+  clear:
+    - clear blue sky
+    - cloudless golden sunset
+    - crisp starry night
+
+  stormy:
+    - 1.5::dramatic thunderstorm with lightning
+    - heavy rain with dark clouds
+    - approaching storm front on the horizon
+
+  atmospheric:
+    - thick rolling fog
+    - gentle snowfall
+    - light misty rain
+    - dust motes in shafts of light

@@ -1,0 +1,24 @@
+# Seasonal descriptions (deep nesting for glob demos)
+# Try: __environments/outdoor/seasons/autumn__
+# Or:  __environments/**__ to pick from any environment at any depth
+
+seasons:
+  spring:
+    - cherry blossoms in full bloom
+    - fresh green shoots emerging from thawing ground
+    - gentle spring rain on new leaves
+
+  summer:
+    - golden wheat fields under blazing sun
+    - lush canopy in deep green fullness
+    - heat shimmer rising from sun-baked stone
+
+  autumn:
+    - fiery red and gold canopy
+    - fallen leaves carpeting the ground
+    - harvest time with amber light
+
+  winter:
+    - snow-blanketed landscape in silver silence
+    - bare branches against a pale grey sky
+    - frozen lake reflecting cold blue light

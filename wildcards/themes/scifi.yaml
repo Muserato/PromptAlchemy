@@ -1,0 +1,19 @@
+# Sci-Fi theme — demonstrates glob patterns
+# __path/*__ picks a random direct subcategory
+# __path/**__ picks from any depth
+# __path/**/suffix__ matches a suffix at any depth
+
+scifi:
+  character:
+    - "a {cybernetic|augmented|android} figure in __colors/cool__ lighting, __compositions__, __quality_boosters__"
+    - "space explorer with __materials/metal__ equipment, __environments/outdoor/urban__, __lighting/studio__"
+    - "a scientist in a {sterile|cluttered|high-tech} laboratory, __lighting/soft__"
+
+  environment:
+    - "__environments/**__ with futuristic elements, __lighting/*__, neon accents"
+    - "__environments/outdoor/*__, reimagined as a sci-fi landscape, __colors/*__ palette"
+    - "space station interior, __lighting/studio__, {holographic displays|floating data panels}, __quality_boosters__"
+
+  atmosphere:
+    - "__moods__ sci-fi atmosphere, __colors/**__ color grading, __lighting__"
+    - "__environments/outdoor/weather/*__ on an alien world, __lighting/dramatic__"

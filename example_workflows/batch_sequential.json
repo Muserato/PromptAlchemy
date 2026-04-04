@@ -1,0 +1,165 @@
+{
+  "id": "403bb6a5-c120-468a-8423-75947031d37c",
+  "revision": 0,
+  "last_node_id": 2,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "PAPromptTemplate",
+      "pos": [
+        200,
+        200
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "variables",
+          "shape": 7,
+          "type": "PA_VARIABLES",
+          "link": null
+        },
+        {
+          "name": "wildcard_index",
+          "shape": 7,
+          "type": "PA_WILDCARD_INDEX",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt_bundle",
+          "type": "PROMPT_BUNDLE",
+          "slot_index": 0,
+          "links": []
+        },
+        {
+          "name": "resolved_text",
+          "type": "STRING",
+          "slot_index": 1,
+          "links": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "slot_index": 2,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PAPromptTemplate",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "a {majestic|ancient|powerful} __characters/mythological__ in __art_styles__ style, __lighting__, __compositions__",
+        0,
+        "sequential",
+        "random"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CLIPTextEncode",
+      "pos": [
+        749.4797744471056,
+        197.91929261323827
+      ],
+      "size": [
+        300,
+        100
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.17.0",
+        "Node name for S&R": "CLIPTextEncode",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "text": true
+          },
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "info": "Sequential batch: PA Prompt Template in sequential mode. Each queue run advances through options in order, cycling back to start.",
+    "workflowRendererVersion": "LG",
+    "ue_links": [],
+    "ds": {
+      "scale": 1.4097701149425288,
+      "offset": [
+        -100,
+        -97.91929261323827
+      ]
+    },
+    "frontendVersion": "1.41.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
