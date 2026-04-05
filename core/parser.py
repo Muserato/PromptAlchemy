@@ -221,7 +221,19 @@ class Parser:
                     # Empty ____  — not a wildcard
                     self.pos = save_pos
                     return None
-            if self._peek() in '{}\n':
+            if self._peek() == '{':
+                if self._peek(1) == '$':
+                    # Scan past the {$varname} variable reference
+                    scan = self.pos + 2
+                    while scan < self.length and self.text[scan] != '}':
+                        scan += 1
+                    if scan < self.length:
+                        self.pos = scan + 1
+                        continue
+                # Bare { or unterminated {$ — not a valid wildcard
+                self.pos = save_pos
+                return None
+            if self._peek() in '}\n':
                 # Not a valid wildcard
                 self.pos = save_pos
                 return None
