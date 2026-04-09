@@ -166,6 +166,28 @@ The core node. Parses and resolves prompt templates.
 | `resolved_text` | STRING | Plain text for CLIP Text Encode |
 | `seed` | INT | The seed used |
 
+**Examples:**
+
+Minimum viable template — selections and wildcards:
+```
+a {beautiful|stunning|majestic} __colors__ dragon in __art_styles__ style, __lighting__
+```
+Resolved: `a stunning emerald dragon in oil painting style, volumetric lighting`
+
+Variables and conditionals (connect a Variables node with `style=cinematic`, `subject=warrior`):
+```
+a {$subject} in {$style} style, {if $style==cinematic: dramatic rim lighting | soft ambient light}, __environments/outdoor__
+```
+Resolved: `a warrior in cinematic style, dramatic rim lighting, misty highland cliffs`
+
+Numeric range inside a LoRA weight + multi-select quality tags:
+```
+portrait, <lora:detail_enhancer:{weight:0.8-1.2}>, {2$$sharp focus|fine detail|intricate texture}, __quality_boosters__
+```
+Resolved: `portrait, <lora:detail_enhancer:1.07>, sharp focus, fine detail, masterpiece`
+
+---
+
 ### PA Variables
 
 Defines key-value variables for use in templates.
@@ -188,6 +210,19 @@ lighting=volumetric
 
 Lines starting with `#` are comments. Multiple Variables nodes can be chained — downstream values override upstream.
 
+**Examples:**
+
+Define a reusable style preset and reference it throughout your template:
+```
+# variables_text
+style=cinematic
+character=warrior
+lighting=volumetric
+```
+Template: `a {$character} in {$style} style, {$lighting}, {if $style==cinematic: anamorphic lens flare}`
+
+Chain two Variables nodes for global defaults with per-scene overrides — upstream node defines `style=cinematic, mood=epic`; downstream node defines `mood=serene`. The template sees `style=cinematic, mood=serene` (downstream wins on conflict, upstream values are kept otherwise).
+
 ### PA Wildcard Manager
 
 Scans directories for wildcard files and provides a shared index.
@@ -204,6 +239,20 @@ Scans directories for wildcard files and provides a shared index.
 
 If no Wildcard Manager is connected, Template nodes automatically use the built-in `wildcards/` directory.
 
+**Examples:**
+
+Merge your own wildcard pack with the built-in wildcards:
+```
+wildcard_dir:  ComfyUI-PromptAlchemy/wildcards
+
+extra_dirs:
+C:/MyWildcards/portraits
+C:/MyWildcards/vehicles
+```
+Now `__portraits/style__` and `__vehicles/cars__` resolve alongside the built-in `__colors__` and `__art_styles__`.
+
+Connect the `available_wildcards` output to a **Show Text** node to inspect every loaded wildcard name before writing your template — useful when pointing to a large third-party wildcard pack.
+
 ### PA Prompt Combiner
 
 Joins multiple resolved prompts with a separator.
@@ -219,6 +268,20 @@ Joins multiple resolved prompts with a separator.
 |--------|------|-------------|
 | `prompt_bundle` | PROMPT_BUNDLE | Combined bundle |
 | `resolved_text` | STRING | Combined text |
+
+**Examples:**
+
+Classic 3-part prompt — subject, environment, quality boosters joined with `", "`:
+
+| Slot | Template | Resolved |
+|------|----------|----------|
+| bundle_1 | `a {majestic\|fierce} __characters/archetypes__` | `a fierce rogue` |
+| bundle_2 | `in __environments/outdoor__` | `in a misty forest` |
+| bundle_3 | `__quality_boosters__, __lighting__` | `masterpiece, golden hour sunlight` |
+
+Combined (separator `", "`): `a fierce rogue, in a misty forest, masterpiece, golden hour sunlight`
+
+Append a style tag without touching the main prompt — set separator to `" "` and bundle_2 to `| style: __art_styles__`, so the final text reads `<your prompt> | style: oil painting` — useful for SDXL style conditioning.
 
 ### PA LLM Expander
 
@@ -241,6 +304,27 @@ Sends prompt text to an LLM for enhancement. Fully optional.
 | `resolved_text` | STRING | Expanded text |
 | `original_text` | STRING | Pre-expansion text |
 
+**Examples:**
+
+Flag the entire prompt for LLM expansion with a bare `{@expand}` marker — the LLM rewrites the whole thing:
+```
+{@expand} a knight, forest, dramatic lighting
+```
+LLM output: `A battle-worn knight clad in ornate silver armor stands at the edge of an ancient forest, shafts of golden light piercing the canopy, casting long dramatic shadows across mossy stone ruins`
+
+Expand only one section while keeping the rest of the prompt exact — set `expand_markers_only` to `true`:
+```
+masterpiece, {@expand: a knight standing at the edge of a forest}, soft bokeh background
+```
+LLM expands only the marked part: `masterpiece, a battle-worn knight in ornate plate armor, ancient moss-covered trees looming behind him, dappled light filtering through oak branches, soft bokeh background`
+
+Use a custom system prompt to lock in a style — replace the default with:
+```
+You are an expert prompt writer for anime illustrations in the style of Studio Ghibli.
+Enhance the prompt with nature imagery, soft light, and hand-drawn warmth.
+Output ONLY the enhanced prompt, no explanations.
+```
+
 ### PA Prompt Logger
 
 Logs every resolved prompt to a JSONL file. Pure passthrough — does not modify the prompt.
@@ -256,6 +340,19 @@ Logs every resolved prompt to a JSONL file. Pure passthrough — does not modify
 |--------|------|-------------|
 | `prompt_bundle` | PROMPT_BUNDLE | Pass-through |
 | `resolved_text` | STRING | Pass-through |
+
+**Examples:**
+
+Tag log entries with project metadata so you can filter the JSONL file later:
+```
+# extra_metadata
+project=dragons_series
+artist=jcb
+session=batch_001
+```
+Each log entry will include `"extra": {"project": "dragons_series", "artist": "jcb", "session": "batch_001"}` alongside the resolved text, seed, variables, and wildcard choices.
+
+Insert the Logger between the LLM Expander and CLIP Text Encode to record the post-expansion text. Toggle it off with `enabled=false` during fast iteration without disconnecting the node.
 
 ---
 

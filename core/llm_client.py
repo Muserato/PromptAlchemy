@@ -33,43 +33,16 @@ class LLMClient:
     ) -> str:
         """Send text to an LLM and return the expanded result.
 
-        On any failure, logs a warning and returns the original text unchanged.
+        Raises on failure so the caller (ComfyUI node) surfaces a visible error.
         """
-        try:
-            if provider == "ollama":
-                return self._call_ollama(text, endpoint, model, system_prompt, temperature)
-            elif provider == "openai_compatible":
-                return self._call_openai(text, endpoint, model, system_prompt, temperature, api_key)
-            elif provider == "anthropic":
-                return self._call_anthropic(text, endpoint, model, system_prompt, temperature, api_key)
-            else:
-                logger.warning("PA LLM Expander: unknown provider %r, passing through", provider)
-                return text
-        except httpx.ConnectError:
-            logger.warning(
-                "PA LLM Expander: connection refused to %s — is the server running? "
-                "Passing through original text.", endpoint,
-            )
-            return text
-        except httpx.TimeoutException:
-            logger.warning(
-                "PA LLM Expander: request to %s timed out after %.0fs. "
-                "Passing through original text.", endpoint, self.timeout,
-            )
-            return text
-        except httpx.HTTPStatusError as e:
-            body = e.response.text[:500] if e.response else ""
-            logger.warning(
-                "PA LLM Expander: HTTP %d from %s: %s. Passing through original text.",
-                e.response.status_code, endpoint, body,
-            )
-            return text
-        except Exception as e:
-            logger.warning(
-                "PA LLM Expander: unexpected error: %s. Passing through original text.",
-                e,
-            )
-            return text
+        if provider == "ollama":
+            return self._call_ollama(text, endpoint, model, system_prompt, temperature)
+        elif provider == "openai_compatible":
+            return self._call_openai(text, endpoint, model, system_prompt, temperature, api_key)
+        elif provider == "anthropic":
+            return self._call_anthropic(text, endpoint, model, system_prompt, temperature, api_key)
+        else:
+            raise ValueError(f"PA LLM Expander: unknown provider {provider!r}")
 
     def _call_ollama(
         self, text: str, endpoint: str, model: str,
@@ -86,7 +59,13 @@ class LLMClient:
 
         with httpx.Client(timeout=self.timeout) as client:
             response = client.post(url, json=payload)
-            response.raise_for_status()
+            if not response.is_success:
+                body = response.text[:300]
+                raise httpx.HTTPStatusError(
+                    f"HTTP {response.status_code} from Ollama: {body}",
+                    request=response.request,
+                    response=response,
+                )
             data = response.json()
 
         result = data.get("response", "").strip()

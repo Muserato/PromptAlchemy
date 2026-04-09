@@ -7,7 +7,7 @@ from pathlib import Path
 
 from ..core.resolver import resolve_bundle
 from ..core.file_watcher import create_watched_index, WildcardWatcher
-from ..core.types import WildcardIndex
+from ..core.types import WildcardIndex, EXPAND_START, EXPAND_END
 
 logger = logging.getLogger("PromptAlchemy")
 
@@ -99,7 +99,8 @@ class PAPromptTemplate:
                 wildcard_index=wc_index,
             )
             bundles.append(bundle.to_dict())
-            texts.append(bundle.resolved_text)
+            display_text = bundle.resolved_text.replace(EXPAND_START, "").replace(EXPAND_END, "")
+            texts.append(display_text)
             seeds.append(current_seed)
 
         return (bundles, texts, seeds)

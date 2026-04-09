@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-prompt-alchemy"
-version = "1.0.0"
+version = "1.0.1"
 description = "A modern prompt templating system for ComfyUI"
 license = {text = "MIT"}
 requires-python = ">=3.10"

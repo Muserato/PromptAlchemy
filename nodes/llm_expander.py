@@ -84,6 +84,10 @@ class PALLMExpander:
 
             if not has_markers:
                 # No markers — pass through unchanged
+                logger.info(
+                    "PA LLM Expander: expand_markers_only=True but no {@expand: ...} markers "
+                    "found in prompt — passing through unchanged."
+                )
                 out_bundle = dict(prompt_bundle)
                 out_bundle["resolved_text"] = original_text
                 return (out_bundle, original_text, original_text)
