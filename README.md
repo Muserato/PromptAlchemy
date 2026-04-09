@@ -25,10 +25,6 @@ A modern prompt templating system for ComfyUI — wildcards, variables, conditio
 
 ## Installation
 
-### Via ComfyUI Manager
-
-Search for **PromptAlchemy** in the ComfyUI Manager and click Install.
-
 ### Manual Installation
 
 ```bash
@@ -320,7 +316,7 @@ LLM expands only the marked part: `masterpiece, a battle-worn knight in ornate p
 
 Use a custom system prompt to lock in a style — replace the default with:
 ```
-You are an expert prompt writer for anime illustrations in the style of Studio Ghibli.
+You are an expert prompt writer for anime illustrations.
 Enhance the prompt with nature imagery, soft light, and hand-drawn warmth.
 Output ONLY the enhanced prompt, no explanations.
 ```
